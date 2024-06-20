@@ -1,0 +1,31 @@
+.footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0px;
+    color: white;
+    background-color: rgb(37, 37, 37);
+    gap: 40px;
+    width: 100%;
+}
+
+footer div p {
+    margin-left: 0px;
+}
+
+.footer_heading {
+    font-size: 45px;
+}
+
+.footer-item {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.footer-link {
+    color: white;
+}
+
+.footer-link:hover {
+    color: #55c9fb;
+}

@@ -1,0 +1,25 @@
+.nav{
+  border-bottom: 1px solid black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav ul{
+  display: flex;
+  gap: 100px;
+  border: 1px solid black;
+  width: 100%;
+  list-style: none;
+}
+
+.nav ul li a{
+  text-decoration: none;
+}
+
+.nav ul li:last-child{
+  margin-left: 50% ;
+}
+.app-logo{
+  width: 400px;
+}
+
