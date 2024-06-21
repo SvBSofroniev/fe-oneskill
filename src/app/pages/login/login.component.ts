@@ -23,14 +23,16 @@ export class LoginComponent {
   constructor(){
   }
 
-   onLogin(){
-    this.authService.login(this.loginObj).subscribe((res)=>{
-    if(res.token){
-      this.router.navigateByUrl('/home');
-    }
-
-    }, _error=>{
-      alert('Wrong credentials.');
-    })
+  onLogin(){
+    this.authService.login(this.loginObj).subscribe(
+      {
+        next:res=>{
+          if(res.token && res.username){
+            this.router.navigateByUrl('/');
+          }
+        },
+        error: ()=> alert('Wrong credentials.')
+      }
+    );
   }
 }

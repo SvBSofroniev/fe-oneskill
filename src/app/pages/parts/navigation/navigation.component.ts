@@ -17,6 +17,8 @@ export class NavigationComponent {
 
   authService = inject(AuthService);
   router = inject(Router);
+  
+  username = sessionStorage.getItem(this.authService.USER)
 
   logout(){
     this.authService.logout();
