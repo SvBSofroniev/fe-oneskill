@@ -25,15 +25,14 @@
     background-color: #2f88ed;
     color: #FFFFFF;
     border: none;
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px 0 0 8px;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.search-button:hover,
-.search-button:focus {
+.search-button:hover {
     background-color: #1c5ca5;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     outline: none;

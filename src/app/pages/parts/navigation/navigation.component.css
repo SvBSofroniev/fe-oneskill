@@ -21,7 +21,13 @@
   padding: 10px 20px;
   background-color: rgb(37, 37, 37);
   box-shadow: -5px 5px 0px #1c5ca5;
+}
+
+.nav ul li a:hover{
+  background-color: #f2f2f2;
+  color: rgb(37, 37, 37);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .nav ul li:last-child{
