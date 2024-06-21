@@ -11,6 +11,7 @@ import { routeGuardGuard } from './services/route-guard.guard';
 export const routes: Routes = [
     {
         path: 'login',
+        canActivate: [routeGuardGuard],
         component: LoginComponent,
     },
     {
@@ -19,7 +20,7 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                // canActivate: [authGuard],
+                canActivate: [authGuard],
                 component: HomeComponent
             },
             {
@@ -28,7 +29,7 @@ export const routes: Routes = [
                 component: CoursesComponent
             },
             {
-                path: 'profile',
+                path: 'profile/:username',
                 canActivate: [authGuard],
                 component: ProfileComponent
             }

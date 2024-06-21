@@ -1,37 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
   private http = inject(HttpClient);
-  private authService = inject(AuthService);
-  private username: any;
-  constructor() { }
+  public data: any;
 
-  useObject: any ={
-    "firstName": "",
-    "lastName": "",
-    "email":"",
-    "username":"",
-    "createdAt":"",
-    "updatedAt":""
+
+
+  constructor() { 
+
   }
 
-  getUserInfo(){
-   this.username = sessionStorage.getItem(this.authService.USER)
+  getUserInfo():Observable<any>{
+   const username = sessionStorage.getItem('USER');
+   const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+   let user = {};
+   return this.http.get(`http://localhost:8082/oneskill/users/${username}`,{
+      headers:{'Authorization': `Bearer ${jwtToken}`,        'Access-Control-Allow-Origin':"*"
+    }});
 
-    this.http.get('http://localhost:8082/onskill/users', this.username).subscribe(
-      {
-        next:res=>{
-          console.log(res);
-          
-        },
-        error: ()=> alert('Wrong credentials.')
-      }
-    );
   }
 
 }

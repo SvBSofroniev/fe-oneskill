@@ -19,7 +19,7 @@ export class AuthService {
     username: string,
     password: string
   }): Observable<any>{
-    return this.http.post('http://localhost:8082/oneskill/auth/login', user)
+    return this.http.post('http://localhost:8082/oneskill/auth/login',user)
     .pipe(tap((response: any)=>this.doLoginUser(response.username, response.token)));
   }
 
