@@ -10,39 +10,46 @@ import { routeGuardGuard } from './services/route-guard.guard';
 
 export const routes: Routes = [
     {
-        path:'login',
+        path: 'login',
+        component: LayoutComponent,
         canActivate: [routeGuardGuard],
-        component:LoginComponent
+        children: [
+            {
+                path: 'home',
+                canActivate: [authGuard],
+                component: HomeComponent
+            },
+        ]
     },
     {
-        path:'',
-        redirectTo:'login',
+        path: '',
+        redirectTo: 'login',
         pathMatch: 'full'
     },
 
     {
-        path:'',
-        component:LayoutComponent,
+        path: '',
+        component: LayoutComponent,
         children: [
             {
-                path:'home',
-                canActivate:[authGuard],
-                component:HomeComponent
+                path: 'home',
+                canActivate: [authGuard],
+                component: HomeComponent
             },
             {
-                path:'courses',
-                canActivate:[authGuard],
-                component:CoursesComponent
+                path: 'courses',
+                canActivate: [authGuard],
+                component: CoursesComponent
             },
             {
-                path:'profile',
-                canActivate:[authGuard],
-                component:ProfileComponent
+                path: 'profile',
+                canActivate: [authGuard],
+                component: ProfileComponent
             }
         ]
     },
     {
-        path:'**',
+        path: '**',
         component: LoginComponent
     }
 ];
