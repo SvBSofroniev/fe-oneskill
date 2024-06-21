@@ -1,0 +1,77 @@
+.profile-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 800px;
+    background-color: #e6f7ff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.profile-image {
+    flex: 1;
+    border-radius: 50%;
+    object-fit: fill;
+    margin-right: 20px;
+    margin-top: 5%;
+    width: 60%;
+    height: 60%;
+}
+
+.profile-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profile-info h3 {
+    color: #2f88ed;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.profile-info p {
+    color: #333333;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.profile-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #2f88ed;
+    color: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-link:hover {
+    background-color: #1c5ca5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.course-section-h1 {
+    color: #2f88ed;
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
