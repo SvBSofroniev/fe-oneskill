@@ -93,3 +93,43 @@
 .enroll-link {
     background-color: rgb(253, 86, 86);
 }
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 800px;
+    border: 2px solid #2f88ed;
+    border-radius: 8px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    font-size: 18px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-button {
+    padding: 15px 25px;
+    background-color: #2f88ed;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #1c5ca5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
