@@ -6,7 +6,7 @@
 	align-items: center;
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
-	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+	background: linear-gradient(to bottom, #1653a3, #12a9d2, #053861);
 }
 .main{
     border: 1px solid black;
@@ -14,7 +14,7 @@
 	height: 600px;
 	background: red;
 	overflow: hidden;
-	background: linear-gradient(to bottom, #181248, #302b63, #24243e);
+	background: linear-gradient(to bottom, #1860cc, #26a7e7, #053861);
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
 }
@@ -77,7 +77,7 @@ button:hover{
 	transition: .8s ease-in-out;
 }
 .login label{
-	color: #573b8a;
+	color: #2280ec;
 	transform: scale(.6);
 }
 
