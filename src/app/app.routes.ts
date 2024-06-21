@@ -11,29 +11,15 @@ import { routeGuardGuard } from './services/route-guard.guard';
 export const routes: Routes = [
     {
         path: 'login',
-        component: LayoutComponent,
-        canActivate: [routeGuardGuard],
-        children: [
-            {
-                path: 'home',
-                canActivate: [authGuard],
-                component: HomeComponent
-            },
-        ]
+        component: LoginComponent,
     },
-    {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    },
-
     {
         path: '',
         component: LayoutComponent,
         children: [
             {
-                path: 'home',
-                canActivate: [authGuard],
+                path: '',
+                // canActivate: [authGuard],
                 component: HomeComponent
             },
             {
