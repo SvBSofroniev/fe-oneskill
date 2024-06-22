@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface VideoInfoResponseDTO {
+  videoId: string;
   title: string;
   description: string;
   status: string;

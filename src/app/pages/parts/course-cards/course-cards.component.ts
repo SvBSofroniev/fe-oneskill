@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { VideoInfoResponseDTO, VideoService } from '../../../services/video.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-course-cards',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './course-cards.component.html',
   styleUrl: './course-cards.component.css'
 })

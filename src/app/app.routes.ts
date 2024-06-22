@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { authGuard } from './services/auth.guard';
 import { routeGuardGuard } from './services/route-guard.guard';
+import { VideoComponent } from './pages/video/video.component';
 
 
 export const routes: Routes = [
@@ -32,6 +33,11 @@ export const routes: Routes = [
                 path: 'profile/:username',
                 canActivate: [authGuard],
                 component: ProfileComponent
+            },
+            {
+                path: 'videos/:id',
+                canActivate: [authGuard],
+                component: VideoComponent
             }
         ]
     },

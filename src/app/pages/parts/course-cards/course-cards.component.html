@@ -1,19 +1,25 @@
+
 <div class="courses-section">
-   
-    <div class="course-c vidards">
-        @for(video of videos; track video){
-        <div class="course-card">
-            <img  class="course-image"  [src]="getImageSrc(video.thumbnailBase64)" alt="{{ video.title }} thumbnail">
-            <div class="course-info">
-                <h3>{{ video.title }}</h3>
-                <p>Instructor: John Doe</p>
-                <p>Date: 22 June 2024</p>
-                <p>Time: 10:00 AM</p>
-                <p>Duration: 2 hours</p>
-                <a href="#" class="enroll-link course-link">Enroll</a>
-                <a href="#" class="open-link course-link">Open</a>
-            </div>
+    @if(videos.length === 0){
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
         }
+        
+    @for(video of videos; track video){
+    <div class="course-card">
+        <img class="course-image" [src]="getImageSrc(video.thumbnailBase64)" alt="{{ video.title }} thumbnail">
+        <div class="course-info">
+            <h3>{{ video.title }}</h3>
+            <p>Likes: {{video.likes}}</p>
+            <p>Dislikes: {{video.dislikes}}</p>
+            <p>Views: {{video.views}}</p>
+            <a [routerLink]="['/videos','{{video.videoId}}']" class="enroll-link course-link">Enroll</a>
+            <a [routerLink]="['/videos','{{video.videoId}}']" class="open-link course-link">Open</a>
+        </div>
     </div>
+    }
 </div>
