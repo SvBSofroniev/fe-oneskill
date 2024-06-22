@@ -10,8 +10,6 @@ export class UserServiceService {
   private http = inject(HttpClient);
   public data: any;
 
-
-
   constructor() { 
 
   }
@@ -19,11 +17,8 @@ export class UserServiceService {
   getUserInfo():Observable<any>{
    const username = sessionStorage.getItem('USER');
    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
-   let user = {};
    return this.http.get(`http://localhost:8082/oneskill/users/${username}`,{
       headers:{'Authorization': `Bearer ${jwtToken}`,        'Access-Control-Allow-Origin':"*"
     }});
-
   }
-
 }
