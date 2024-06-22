@@ -17,8 +17,8 @@
             <p>Likes: {{video.likes}}</p>
             <p>Dislikes: {{video.dislikes}}</p>
             <p>Views: {{video.views}}</p>
-            <a [routerLink]="['/videos','{{video.videoId}}']" class="enroll-link course-link">Enroll</a>
-            <a [routerLink]="['/videos','{{video.videoId}}']" class="open-link course-link">Open</a>
+            <a [routerLink]="['/videos', video.videoId]" class="enroll-link course-link">Enroll</a>
+            <a [routerLink]="['/videos', video.videoId]" class="open-link course-link">Open</a>
         </div>
     </div>
     }

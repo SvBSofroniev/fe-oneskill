@@ -1,9 +1,6 @@
 <div class="video-container">
     <div class="video-player">
-        <video controls>
-            <source src="your-video-file.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <video #videoPlayer [src]="videoUrl"  controls></video>
     </div>
     <div class="video-details">
         <h1>Video Title</h1>
@@ -32,7 +29,6 @@
             <div class="comment">
                 <p><strong>Jane Smith:</strong> Thanks for the detailed explanation.</p>
             </div>
-            <!-- More comments here -->
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -32,4 +32,16 @@ export class VideoService {
         'Access-Control-Allow-Origin':"*"
      }});
    }
+
+   getVideoStream(id: any): Observable<Blob> {
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwtToken}`
+    });
+    
+    return this.http.get(`http://localhost:8082/oneskill/videos/stream/${id}`, { 
+      headers: headers,
+      responseType: 'blob'
+    });
+  }
 }

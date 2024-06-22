@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, inject, NgZone, AfterViewInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { VideoService } from '../../services/video.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-video',
@@ -7,6 +11,45 @@ import { Component } from '@angular/core';
   templateUrl: './video.component.html',
   styleUrl: './video.component.css'
 })
-export class VideoComponent {
+export class VideoComponent implements OnInit, AfterViewInit {
+  @ViewChild('videoPlayer')
+  videoPlayer!: ElementRef<HTMLVideoElement>;
+  videoService = inject(VideoService);
+  sanitizer  = inject(DomSanitizer)
+  videoUrl: SafeUrl | undefined;
+  videoId! : string  | null;
+
+  router = inject(Router);
+
+
+  constructor(private ngZone: NgZone, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+
+    this.route.paramMap.subscribe((params) => {
+      this.videoId = params.get('id');
+    });
+    this.videoService.getVideoStream(this.videoId).subscribe(blob => {
+      this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+    });
+  }
+  ngAfterViewInit() {
+    const video = this.videoPlayer.nativeElement;
+
+    video.onenterpictureinpicture = () => {
+      this.ngZone.run(() => {
+        console.log('Entered Picture-in-Picture mode');
+      });
+    };
+
+    video.onleavepictureinpicture = () => {
+      this.ngZone.run(() => {
+        console.log('Exited Picture-in-Picture mode');
+        this.router.navigate([`/videos/${this.videoId}`]); 
+      });
+    };
+  }
 
 }
+
+
