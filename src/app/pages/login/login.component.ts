@@ -49,9 +49,7 @@ export class LoginComponent {
     this.authService.register(this.registerObj).subscribe(
       {
         next:res=>{
-          if(res){
-            console.log(res);
-            
+          if(res){         
             alert(`Registration was successfull. \nYou can now login to your account.`);
             myRegisterForm.reset();
           }

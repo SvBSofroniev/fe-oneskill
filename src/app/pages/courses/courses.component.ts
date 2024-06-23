@@ -13,8 +13,6 @@ export class CoursesComponent {
   messageToPass: string= '';
 
   receiveMessage(message: string) {
-    console.log(message);
-    
     this.messageToPass = message;
   }
 }

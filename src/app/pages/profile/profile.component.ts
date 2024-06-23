@@ -25,9 +25,7 @@ export class ProfileComponent implements OnInit{
   ngOnInit(): void {
     this.userService.getUserInfo().subscribe(
       {
-        next:res=>{
-          console.log(res.firstname);
-          
+        next:res=>{          
           this.response = res;
         },
         error: ()=> alert('Something went wrong')
