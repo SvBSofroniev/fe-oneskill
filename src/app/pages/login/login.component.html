@@ -3,15 +3,14 @@
     <input type="checkbox" id="chk" aria-hidden="true">
   
       <div class="signup">
-        <form>
+        <form #myRegisterForm="ngForm">
           <label for="chk" aria-hidden="true">Sign up</label>
-          <input type="text" name="firstName" placeholder="First name" required="">
-          <input type="text" name="lastName" placeholder="Last name" required="">
-
-          <input type="username" name="username" placeholder="Username" required="">
-          <input type="password" name="password" placeholder="Password" required="">
-          <input type="email" name="email" placeholder="Email" required="">
-          <button>Sign up</button>
+          <input type="text" name="firstname" [(ngModel)]="registerObj.firstname" placeholder="First name" required="">
+          <input type="text" name="lastName" [(ngModel)]="registerObj.lastname" placeholder="Last name" required="">
+          <input type="username" name="username" [(ngModel)]="registerObj.username" placeholder="Username" required="">
+          <input type="password" name="password" [(ngModel)]="registerObj.password" placeholder="Password" required="">
+          <input type="email" name="email" [(ngModel)]="registerObj.email" placeholder="Email" required="">
+          <button (click)="onRegister(myRegisterForm)">Sign up</button>
         </form>
       </div>
   

@@ -1,4 +1,4 @@
 <div class="search-container">
-    <input type="text" class="search-input" placeholder="Search...">
-    <button class="search-button">Search</button>
+    <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="criteriaObj.value">
+    <button class="search-button" (click)="onSearch()">Search</button>
 </div>

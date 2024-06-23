@@ -42,4 +42,16 @@ export class AuthService {
     sessionStorage.removeItem(this.USER);
     this.isAuthenticatedSubject.next(false);
   }
+
+
+  register(user: {
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string,
+    username: string
+  }): Observable<any>{
+    return this.http.post('http://localhost:8082/oneskill/auth/register',user)
+    .pipe(tap((response: any)=>console.log(response)));
+  }
 }

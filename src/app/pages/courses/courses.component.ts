@@ -10,5 +10,11 @@ import { CourseCardsComponent } from '../parts/course-cards/course-cards.compone
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent {
+  messageToPass: string= '';
 
+  receiveMessage(message: string) {
+    console.log(message);
+    
+    this.messageToPass = message;
+  }
 }

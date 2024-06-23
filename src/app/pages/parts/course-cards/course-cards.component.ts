@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { VideoInfoResponseDTO, VideoService } from '../../../services/video.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -11,17 +11,18 @@ import { RouterModule } from '@angular/router';
 })
 export class CourseCardsComponent {
   videoService = inject(VideoService);
+  @Input() messageToPass: string = '';
 
   videos: VideoInfoResponseDTO[] = [];
-
-
+  
   ngOnInit(): void {
+    console.log(this.messageToPass);
     this.videoService.getVideosInfoData().subscribe(data => {
       this.videos = data;    
     });
   }
 
-  getImageSrc(thumbnailBase64: string): string {
+  getImageSrc(thumbnailBase64: string): string {        
     return `data:image/jpeg;base64,${thumbnailBase64}`;
   }
 }

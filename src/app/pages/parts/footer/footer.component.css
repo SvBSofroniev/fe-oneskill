@@ -15,11 +15,14 @@ footer div p {
 .footer_heading {
     font-size: 45px;
 }
+.follow-title{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
 
 .footer-item {
     display: inline-block;
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .footer-link {

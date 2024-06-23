@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -19,6 +19,14 @@ export class LoginComponent {
     "password": ""
   }
 
+  registerObj: any={
+    "username": "",
+    "firstname": "",
+    "lastname": "",
+    "email":"",
+    "password":""
+  }
+
   router = inject(Router);
   constructor(){
   }
@@ -34,5 +42,21 @@ export class LoginComponent {
         error: ()=> alert('Wrong credentials.')
       }
     );
+  }
+
+
+  onRegister(myRegisterForm: NgForm){
+    this.authService.register(this.registerObj).subscribe(
+      {
+        next:res=>{
+          if(res){
+            console.log(res);
+            
+            alert(`Registration was successfull. \nYou can now login to your account.`);
+            myRegisterForm.reset();
+          }
+        }
+      }
+    )
   }
 }
