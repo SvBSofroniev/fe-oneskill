@@ -30,9 +30,6 @@
   cursor: pointer;
 }
 
-.nav ul li:last-child{
-  margin-left: 30%;
-}
 .app-logo{
   width: 400px;
 }
