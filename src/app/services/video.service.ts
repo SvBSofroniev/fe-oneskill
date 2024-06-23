@@ -15,7 +15,7 @@ export interface VideoInfoResponseDTO {
 }
 
 export interface EnrolledVideo{
-  videoId: string;
+  id: string;
 }
 
 

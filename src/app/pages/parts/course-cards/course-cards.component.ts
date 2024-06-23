@@ -42,6 +42,6 @@ export class CourseCardsComponent {
   }
 
   isVideoEnrolled(videoId: string): boolean {
-    return this.enrolled.some(enrolledVideo => enrolledVideo.videoId === videoId);
+    return !this.enrolled.some(enrolledVideo => enrolledVideo.id === videoId);
   }
 }
