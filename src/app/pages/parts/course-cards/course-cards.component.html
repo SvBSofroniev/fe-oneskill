@@ -9,7 +9,7 @@
         </div>
         }
         
-    @for(video of videos; track video){
+    @for(video of filteredVideos; track video){
        
     <div class="course-card">
         <img class="course-image" [src]="getImageSrc(video.thumbnailBase64)" alt="{{ video.title }} thumbnail">
