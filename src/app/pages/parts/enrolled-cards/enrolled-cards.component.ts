@@ -1,15 +1,16 @@
 import { Component, Input, inject } from '@angular/core';
-import { EnrolledVideo, VideoInfoResponseDTO, VideoService } from '../../../services/video.service';
+import { VideoService, VideoInfoResponseDTO, EnrolledVideo } from '../../../services/video.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
 @Component({
-  selector: 'app-course-cards',
+  selector: 'app-enrolled-cards',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './course-cards.component.html',
-  styleUrl: './course-cards.component.css'
+  templateUrl: './enrolled-cards.component.html',
+  styleUrl: './enrolled-cards.component.css'
 })
-export class CourseCardsComponent {
+export class EnrolledCardsComponent {
   videoService = inject(VideoService);
   @Input() messageToPass: string = '';
 
@@ -23,7 +24,6 @@ export class CourseCardsComponent {
     this.videoService.getEnrolledVideosData().subscribe(data => {
       this.enrolled = data;    
     });   
-    console.log(this.enrolled);
          
   }
 
@@ -36,6 +36,6 @@ export class CourseCardsComponent {
   }
 
   isVideoEnrolled(videoId: string): boolean {
-    return !this.enrolled.some(enrolledVideo => enrolledVideo.id === videoId);
+    return this.enrolled.some(enrolledVideo => enrolledVideo.id === videoId);
   }
 }

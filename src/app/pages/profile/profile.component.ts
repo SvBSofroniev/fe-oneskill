@@ -1,11 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CourseCardsComponent } from '../parts/course-cards/course-cards.component';
 import { UserServiceService } from '../../services/user-service.service';
+import { EnrolledCardsComponent } from '../parts/enrolled-cards/enrolled-cards.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CourseCardsComponent],
+  imports: [EnrolledCardsComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

@@ -7,8 +7,9 @@
         <div></div>
     </div>
     }
-
+    @if(enrolled.length !== 0){
     @for(video of videos; track video){
+    @if(isVideoEnrolled(video.videoId)){
     <div class="course-card">
         <img class="course-image" [src]="getImageSrc(video.thumbnailBase64)" alt="{{ video.title }} thumbnail">
         <div class="course-info">
@@ -16,7 +17,7 @@
             <p>Likes: {{video.likes}}</p>
             <p>Dislikes: {{video.dislikes}}</p>
             <p>Views: {{video.views}}</p>
-            @if(isVideoEnrolled(video.videoId)){
+            @if(!isVideoEnrolled(video.videoId)){
             <a (click)="enroll(video.videoId)" [routerLink]="['/videos', video.videoId]"
                 class="enroll-link course-link">Enroll</a>
             }
@@ -25,6 +26,8 @@
             }
         </div>
     </div>
+    }
+}
 
     }
 </div>

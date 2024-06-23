@@ -1,0 +1,148 @@
+.courses-section {
+    width: 100%;
+    padding: 40px 0px 40px 0px;
+    background-color: #ffffff;
+    text-align: center;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.courses-section h2 {
+    color: #2f88ed;
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+
+.course-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    justify-content: center;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+    background-color: #e6f7ff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-left: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.course-image {
+    flex: 1;
+    border-radius: 8px;
+    object-fit: fill;
+    margin-right: 20px;
+    width: 50%;
+}
+
+.course-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-info h3 {
+    color: #2f88ed;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.course-info p {
+    color: #333333;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.course-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #2f88ed;
+    color: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-link:hover {
+    background-color: #1c5ca5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1200px) {
+    .course-card {
+        width: calc(50% - 20px);
+    }
+}
+
+.open-link {
+    background-color: rgb(76, 225, 76);
+}
+
+.enroll-link {
+    background-color: rgb(253, 86, 86);
+}
+
+
+
+/* Spinner */
+
+
+.lds-ring,
+.lds-ring div {
+  box-sizing: border-box;
+  position: absolute;
+  left: 46%;
+  margin-bottom: 9.3%;
+  top: 100%;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid currentColor;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
