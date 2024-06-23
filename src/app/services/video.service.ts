@@ -14,11 +14,24 @@ export interface VideoInfoResponseDTO {
   views: number;
 }
 
+export interface EnrolledVideo{
+  videoId: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoService {
+
+  getEnrolledVideosData():Observable<any> {
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    return this.http.get('http://localhost:8082/oneskill/videos/enrolled',{
+       headers:{
+        'Authorization': `Bearer ${jwtToken}`,        
+        'Access-Control-Allow-Origin':"*"
+     }});
+  }
   private http = inject(HttpClient);
   public data: any;
 
@@ -52,6 +65,16 @@ export class VideoService {
     });
 
     return this.http.post<boolean>('http://localhost:8082/oneskill/videos/upload', formData, {
+      headers: headers
+    });
+  }
+
+  enrollToVideo(id: string) : Observable<any>{
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwtToken}`
+    });
+    return this.http.post('http://localhost:8082/oneskill/videos/enroll', id, {
       headers: headers
     });
   }

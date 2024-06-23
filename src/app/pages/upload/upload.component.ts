@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
 import { VideoService } from '../../services/video.service';
 import { Router } from '@angular/router';
 
@@ -64,17 +63,6 @@ videoService = inject(VideoService);
         },
         error: ()=> alert('Video was not uploaded')
       });
-
-      // .subscribe(
-      //   {
-      //     next:res=>{
-      //       if(res.token && res.username){
-      //         this.router.navigateByUrl('/');
-      //       }
-      //     },
-      //     error: ()=> alert('Wrong credentials.')
-      //   }
-      // );
     }
   }
 }
