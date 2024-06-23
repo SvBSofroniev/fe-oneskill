@@ -1,0 +1,66 @@
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+/* Form container styling */
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  margin: 120px;
+  margin-left: 43%;
+}
+
+/* Form element spacing */
+form div {
+  margin-bottom: 15px;
+  height: 80px;
+}
+
+/* Input and textarea styling */
+input[type="text"], textarea, input[type="file"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Label styling */
+label {
+  font-weight: bold;
+  display: block;
+}
+
+/* Button styling */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:disabled {
+  background-color: #cccccc;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}

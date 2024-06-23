@@ -7,6 +7,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
 import { authGuard } from './services/auth.guard';
 import { routeGuardGuard } from './services/route-guard.guard';
 import { VideoComponent } from './pages/video/video.component';
+import { UploadComponent } from './pages/upload/upload.component';
 
 
 export const routes: Routes = [
@@ -38,6 +39,11 @@ export const routes: Routes = [
                 path: 'videos/:id',
                 canActivate: [authGuard],
                 component: VideoComponent
+            },
+            {
+                path: 'upload',
+                canActivate: [authGuard],
+                component: UploadComponent
             }
         ]
     },

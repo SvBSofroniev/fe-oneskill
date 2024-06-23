@@ -9,6 +9,8 @@ export class AuthService {
 
   private readonly JWT_TOKEN = 'JWT_TOKEN'
   public readonly USER = 'USER'
+  private readonly ROLES = 'ROLES';
+
   private loggedUser?: string;
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false)
 
@@ -20,13 +22,14 @@ export class AuthService {
     password: string
   }): Observable<any>{
     return this.http.post('http://localhost:8082/oneskill/auth/login',user)
-    .pipe(tap((response: any)=>this.doLoginUser(response.username, response.token)));
+    .pipe(tap((response: any)=>this.doLoginUser(response.username, response.token, response.roles)));
   }
 
-  private doLoginUser(username: string, token: any){
+  private doLoginUser(username: string, token: any, roles: any[]){
     this.loggedUser = username;
     this.storeJwtToken(token);
     this.storeUsername(username);
+    this.storeRoles(roles);
     this.isAuthenticatedSubject.next(true);
   }
 
@@ -36,10 +39,15 @@ export class AuthService {
   private storeUsername(username: string){
     sessionStorage.setItem(this.USER, username);
   }
+  private storeRoles(roles: any[]){
+    const roleNames = roles.map(role => role.authority);
+    sessionStorage.setItem(this.ROLES, JSON.stringify(roleNames));
+  }
 
   logout(){
     sessionStorage.removeItem(this.JWT_TOKEN);
     sessionStorage.removeItem(this.USER);
+    sessionStorage.removeItem(this.ROLES);
     this.isAuthenticatedSubject.next(false);
   }
 

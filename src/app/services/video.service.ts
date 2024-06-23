@@ -44,4 +44,15 @@ export class VideoService {
       responseType: 'blob'
     });
   }
+
+  uploadVideo(formData: FormData): Observable<boolean> {
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwtToken}`
+    });
+
+    return this.http.post<boolean>('http://localhost:8082/oneskill/videos/upload', formData, {
+      headers: headers
+    });
+  }
 }
