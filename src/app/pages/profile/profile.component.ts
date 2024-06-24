@@ -11,15 +11,17 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnInit{
-  displayModal: boolean = false;
+export class ProfileComponent implements OnInit {
+  displayModalEdit: boolean = false;
+  displayModalDelete: boolean = false;
+
   userService = inject(UserServiceService);
 
-  editObj: any={
+  editObj: any = {
     "username": "",
     "firstname": "",
     "lastname": "",
-    "email":"",
+    "email": "",
   }
 
   response = {
@@ -31,15 +33,15 @@ export class ProfileComponent implements OnInit{
     roles: [],
     createdAt: "",
     updatedAt: ""
-}
+  }
 
   ngOnInit(): void {
     this.userService.getUserInfo().subscribe(
       {
-        next:res=>{          
+        next: res => {
           this.response = res;
         },
-        error: ()=> alert('Something went wrong')
+        error: () => alert('Something went wrong')
       }
     );
   }
@@ -48,12 +50,30 @@ export class ProfileComponent implements OnInit{
     console.log(this.editObj);
   }
 
-  openModal() {
-    this.displayModal = true;
+  openModalEdit() {
+    this.displayModalEdit = true;
   }
 
-  closeModal() {
-    this.displayModal = false;
+  openModalDelete() {
+    this.displayModalDelete = true;
   }
- 
+
+  closeEditModal() {
+    this.displayModalEdit = false;
+  }
+
+  closeModalDelete() {
+    this.displayModalDelete = false;
+  }
+
+  confirmDelete() {
+    // Implement delete logic here
+    console.log('Item deleted');
+    this.displayModalDelete = false;
+  }
+
+  cancelDelete() {
+    this.displayModalDelete = false;
+  }
+
 }
