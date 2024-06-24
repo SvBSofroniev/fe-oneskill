@@ -6,11 +6,40 @@
             <h3>{{response.firstname}} {{response.lastname}}</h3>
             <p>Email: {{response.email}}</p>
             <p>Joined at: {{response.createdAt}}</p>
-            <p>Username: {{response.username}}  </p>
-            <a href="#" class="profile-link">Edit Profile</a>
+            <p>Username: {{response.username}} </p>
+            <a (click)="openModal()" class="profile-link">Edit Profile</a>
             <a href="#" class="profile-link">Delete Profile</a>
         </div>
     </div>
+</div>
+
+<div id="editProfileModal" class="modal" [ngStyle]="{'display': displayModal ? 'block' : 'none'}">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>Edit User Profile</h2>
+        <form (ngSubmit)="onEditProfile()">
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" id="firstname" name="firstname" required [(ngModel)]="editObj.firstname">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" name="lastname" required [(ngModel)]="editObj.lastname">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required [(ngModel)]="editObj.username">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required [(ngModel)]="editObj.email">
+            </div>
+            <div class="form-group">
+                <button type="submit">Save Changes</button>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 <h1 class="course-section-h1">Enrolled courses</h1>

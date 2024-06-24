@@ -15,7 +15,6 @@ export class SearchBarComponent {
   }
 
   onSearch() {
-    console.log(this.criteriaObj.value);
     this.messageEvent.emit(this.criteriaObj.value);
   }
 }

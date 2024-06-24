@@ -38,13 +38,12 @@ export class VideoComponent implements OnInit, AfterViewInit {
 
     video.onenterpictureinpicture = () => {
       this.ngZone.run(() => {
-        console.log('Entered Picture-in-Picture mode');
+
       });
     };
 
     video.onleavepictureinpicture = () => {
       this.ngZone.run(() => {
-        console.log('Exited Picture-in-Picture mode');
         this.router.navigate([`/videos/${this.videoId}`]); 
       });
     };

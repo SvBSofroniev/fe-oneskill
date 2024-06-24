@@ -57,7 +57,6 @@ videoService = inject(VideoService);
       
       this.videoService.uploadVideo(formData).subscribe({
         next: res=>{
-          console.log('Video uploaded', res);
           alert('Video uploaded');
           this.router.navigateByUrl('/courses')
         },

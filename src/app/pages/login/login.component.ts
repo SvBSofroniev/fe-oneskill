@@ -50,8 +50,6 @@ export class LoginComponent {
       {
         next:res=>{
           if(res){
-            console.log(res);
-            
             alert(`Registration was successfull. \nYou can now login to your account.`);
             myRegisterForm.reset();
           }
