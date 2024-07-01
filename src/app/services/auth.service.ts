@@ -1,15 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-
+import env from '../../env-constants';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private readonly JWT_TOKEN = 'JWT_TOKEN'
-  public readonly USER = 'USER'
-  private readonly ROLES = 'ROLES';
 
   private loggedUser?: string;
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false)
@@ -20,34 +16,30 @@ export class AuthService {
   login(user: {
     username: string,
     password: string
-  }): Observable<any>{
-    return this.http.post('http://localhost:8082/oneskill/auth/login',user)
-    .pipe(tap((response: any)=>this.doLoginUser(response.username, response.token, response.roles)));
+  }): Observable<any> {
+    return this.http.post('http://localhost:8082/oneskill/auth/login', user)
+      .pipe(tap((response: any) => this.doLoginUser(response.username, response.token, response.roles)));
   }
 
-  private doLoginUser(username: string, token: any, roles: any[]){
+  private doLoginUser(username: string, token: string, roles: string[]) {
     this.loggedUser = username;
-    this.storeJwtToken(token);
-    this.storeUsername(username);
-    this.storeRoles(roles);
+    sessionStorage.setItem(env.JWT_TOKEN, token);
+    sessionStorage.setItem(env.USER, username);
+    sessionStorage.setItem(env.ROLES, JSON.stringify(roles));
     this.isAuthenticatedSubject.next(true);
   }
 
-  private storeJwtToken(jwt: string){
-    sessionStorage.setItem(this.JWT_TOKEN, jwt);
-  }
-  private storeUsername(username: string){
-    sessionStorage.setItem(this.USER, username);
-  }
-  private storeRoles(roles: any[]){
-    const roleNames = roles.map(role => role.authority);
-    sessionStorage.setItem(this.ROLES, JSON.stringify(roleNames));
+  getUserRoles(): string[] {
+    let rolesArray = [];
+    let rolesString = sessionStorage.getItem(env.ROLES);
+    if (typeof rolesString === 'string') {
+      rolesArray = JSON.parse(rolesString);
+    }
+    return rolesArray;
   }
 
-  logout(){
-    sessionStorage.removeItem(this.JWT_TOKEN);
-    sessionStorage.removeItem(this.USER);
-    sessionStorage.removeItem(this.ROLES);
+  logout() {
+    sessionStorage.clear()
     this.isAuthenticatedSubject.next(false);
   }
 
@@ -58,8 +50,8 @@ export class AuthService {
     email: string,
     password: string,
     username: string
-  }): Observable<any>{
-    return this.http.post('http://localhost:8082/oneskill/auth/register',user)
-    .pipe(tap((response: any)=>console.log(response)));
+  }): Observable<any> {
+    return this.http.post('http://localhost:8082/oneskill/auth/register', user)
+      .pipe(tap((response: any) => console.log(response)));
   }
 }

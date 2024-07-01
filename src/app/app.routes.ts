@@ -8,6 +8,7 @@ import { authGuard } from './services/auth.guard';
 import { routeGuardGuard } from './services/route-guard.guard';
 import { VideoComponent } from './pages/video/video.component';
 import { UploadComponent } from './pages/upload/upload.component';
+import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 
 
 export const routes: Routes = [
@@ -44,6 +45,11 @@ export const routes: Routes = [
                 path: 'upload',
                 canActivate: [authGuard],
                 component: UploadComponent
+            },
+            {
+                path: 'admin-panel',
+                canActivate: [authGuard],
+                component: AdminPanelComponent
             }
         ]
     },
