@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+
+import env from '../../env-constants'
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,29 @@ export class UserServiceService {
   }
 
   getUserInfo():Observable<any>{
-   const username = sessionStorage.getItem('USER');
-   const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+   const username = sessionStorage.getItem(env.USER);
+   const jwtToken = sessionStorage.getItem(env.JWT_TOKEN);
    return this.http.get(`http://localhost:8082/oneskill/users/${username}`,{
       headers:{'Authorization': `Bearer ${jwtToken}`,        'Access-Control-Allow-Origin':"*"
+    }});
+  }
+
+  getUsersInfo():Observable<any>{
+    const jwtToken = sessionStorage.getItem(env.JWT_TOKEN);
+
+    return this.http.get('http://localhost:8082/oneskill/users', {
+      headers:{
+        'Authorization': `Bearer ${jwtToken}`,
+        'Access-Control-Allow-Origin':"*"
+    }})
+  }
+
+  updateUserRole(username: string, role: string):Observable<any>{
+    const jwtToken = sessionStorage.getItem(env.JWT_TOKEN);
+
+    return this.http.patch(`http://localhost:8082/oneskill/users/${username}/roles/${role}`,{}, {
+      headers:{'Authorization': `Bearer ${jwtToken}`,        
+      'Access-Control-Allow-Origin':"*"
     }});
   }
 }

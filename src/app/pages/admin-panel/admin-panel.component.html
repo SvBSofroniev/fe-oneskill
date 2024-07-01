@@ -1,1 +1,40 @@
-<p>admin-panel works!</p>
+<div class="container mt-5">
+    <h1 class="mb-4">Admin Panel - User Management</h1>
+    <div class="search-bar">
+        <input type="search" id="userSearch" placeholder="Search for usernames...">
+        <button onclick="filterUserList()">Filter</button>
+    </div>
+    <ul class="user-list" id="userList">
+        @for(user of usersArray; track user){
+
+        <li>
+            <div class="user-info">
+                <strong>Name:</strong>{{user.firstname}} {{user.lastname}}<br>
+                <strong>Username:</strong>{{user.username}}<br>
+                <strong>Roles:</strong> {{user.roles}}<br>
+                <strong>Email:</strong> {{user.email}}<br>
+            </div>
+            <div class="user-actions">
+                @if(!isAdmin(user.roles)){
+                <button type="button" (click)="updateUserRoleAdmin(user.username)" class="btn btn-primary btn-sm">Assign Admin Role</button>
+                }
+                @if(isAdmin(user.roles)){
+                <button type="button" (click)="updateUserRoleAdmin(user.username)" class="btn btn-primary btn-sm">Remove Admin Role</button>
+                }
+                @if(!isDev(user.roles)){
+                <button type="button" (click)="updateUserRoleDev(user.username)" class="btn  btn-success btn-sm">Assign Dev Role</button>
+                }
+                @if(isDev(user.roles)){
+                <button type="button" (click)="updateUserRoleDev(user.username)" class="btn  btn-success btn-sm">Remove Dev Role</button>
+                }
+                @if(!isLecturer(user.roles)){
+                <button type="button" (click)="updateUserRoleLector(user.username)" class="btn btn-danger btn-sm">Assign Lecturer Role</button>
+                }
+                @if(isLecturer(user.roles)){
+                <button type="button" (click)="updateUserRoleLector(user.username)" class="btn btn-danger btn-sm">Remove Lecturer Role</button>
+                }
+            </div>
+        </li>
+        }
+    </ul>
+</div>

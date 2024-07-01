@@ -7,7 +7,7 @@
 }
 .nav ul{
   display: flex;
-  gap: 100px;
+  gap: 50px;
   width: 100%;
   list-style: none;
 }
@@ -17,6 +17,8 @@
   color: #f2f2f2;
   font-size: 20px;
   font-weight: 500;
+  display: inline-block;
+  max-width: 110px;
   border: 2px solid #4699f9;
   padding: 10px 20px;
   background-color: rgb(37, 37, 37);

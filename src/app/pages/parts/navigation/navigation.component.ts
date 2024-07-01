@@ -16,16 +16,13 @@ import env from '../../../../env-constants';
 })
 export class NavigationComponent implements AfterContentChecked {
   isNotJustUser: boolean = false;
-  isDev: boolean = false;
+  isAdmin: boolean = false;
 
   ngAfterContentChecked(): void {
     let roles = this.authService.getUserRoles();
-    this.isNotJustUser = roles.includes(env.ROLE_LECTOR) || roles.includes(env.ROLE_DEV);
-    this.isDev = roles.includes(env.ROLE_DEV);
+    this.isNotJustUser = roles.includes(env.ROLE_LECTOR);
+    this.isAdmin = roles.includes(env.ROLE_ADMIN);
   }
-
-
-
   authService = inject(AuthService);
   router = inject(Router);
 
