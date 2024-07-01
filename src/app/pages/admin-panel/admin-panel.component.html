@@ -1,11 +1,10 @@
 <div class="container mt-5">
     <h1 class="mb-4">Admin Panel - User Management</h1>
-    <div class="search-bar">
-        <input type="search" id="userSearch" placeholder="Search for usernames...">
-        <button onclick="filterUserList()">Filter</button>
-    </div>
+    <form class="search-bar">
+        <input type="search" id="userSearch" placeholder="Search for usernames..." name="username" [(ngModel)]="searchValue.username" (ngModelChange)="searchByUsername()">
+    </form>
     <ul class="user-list" id="userList">
-        @for(user of usersArray; track user){
+        @for(user of filteredUsers; track user){
 
         <li>
             <div class="user-info">

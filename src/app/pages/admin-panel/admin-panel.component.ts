@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { UserServiceService } from '../../services/user-service.service';
 import { CommonModule } from '@angular/common';
 import env from '../../../env-constants'
+import { FormsModule } from '@angular/forms';
 
 type User = {
   firstname: "",
@@ -17,22 +18,26 @@ type User = {
 @Component({
   selector: 'app-admin-panel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.css'
 })
-export class AdminPanelComponent implements OnInit{
- isDisabled = false;
- 
-  userService= inject(UserServiceService);
+export class AdminPanelComponent implements OnInit {
+  isDisabled = false;
+  searchValue = {
+    username: ''
+  }
+
+  userService = inject(UserServiceService);
 
   usersArray: User[] = [];
-  roles = [];
+  filteredUsers: User[] =[];
+
   ngOnInit(): void {
     this.userService.getUsersInfo().subscribe(
       {
         next: res => {
-          this.roles = res;
+          this.filteredUsers = res;
           this.usersArray = res.map((x: User) => ({
             ...x,
             roles: x.roles.join(', ').toUpperCase()
@@ -40,7 +45,7 @@ export class AdminPanelComponent implements OnInit{
         },
         error: () => alert('Something went wrong')
       }
-    );    
+    );
   }
 
   updateUserRoleAdmin(username: string) {
@@ -48,20 +53,20 @@ export class AdminPanelComponent implements OnInit{
   }
 
   updateUserRoleDev(username: string) {
-   this.updateRole(username, env.ROLE_DEV);
+    this.updateRole(username, env.ROLE_DEV);
   }
 
   updateUserRoleLector(username: string) {
-   this.updateRole(username, env.ROLE_LECTOR);
+    this.updateRole(username, env.ROLE_LECTOR);
   }
 
-  updateRole(username: string ,role: string){
+  updateRole(username: string, role: string) {
     this.userService.updateUserRole(username, role).subscribe({
-      next: ()=>{
+      next: () => {
         this.userService.getUsersInfo().subscribe(
           {
             next: res => {
-              this.roles = res;
+              this.filteredUsers = res;
               this.usersArray = res.map((x: User) => ({
                 ...x,
                 roles: x.roles.join(', ').toUpperCase()
@@ -70,21 +75,29 @@ export class AdminPanelComponent implements OnInit{
             },
             error: () => alert('Something went wrong')
           }
-        );  
+        );
       }
     });
 
   }
 
-  isDev(roles: string[]){
+  isDev(roles: string[]) {
     return roles.includes(env.ROLE_DEV.toUpperCase());
   }
 
-  isAdmin(roles: string[]){
+  isAdmin(roles: string[]) {
     return roles.includes(env.ROLE_ADMIN.toUpperCase());
   }
 
-  isLecturer(roles: string[]){
+  isLecturer(roles: string[]) {
     return roles.includes(env.ROLE_LECTOR.toUpperCase());
+  }
+
+  searchByUsername() {
+    if (this.searchValue.username !== '') {
+      this.filteredUsers = this.usersArray.filter(x => x.username.toLowerCase().includes(this.searchValue.username.toLowerCase()))
+    } else {
+      this.filteredUsers = this.usersArray;
+    }
   }
 }
