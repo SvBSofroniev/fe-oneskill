@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
     "firstname": "",
     "lastname": "",
     "email": "",
+    "password": ""
   }
 
   response = {
