@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import env from '../../env-constants'
 
 export interface VideoInfoResponseDTO {
   videoId: string;
@@ -90,12 +91,24 @@ export class VideoService {
 
   viewVideo(id: string) :Observable<any>{
     const jwtToken = sessionStorage.getItem('JWT_TOKEN');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${jwtToken}`
-    });
     return this.http.patch(`http://localhost:8082/oneskill/videos/${id}/view`,{}, {
       headers:{'Authorization': `Bearer ${jwtToken}`,        
       'Access-Control-Allow-Origin':"*"
     }});
+  }
+
+  interact(id: string, action: string): Observable<any>{
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    return this.http.patch(`http://localhost:8082/oneskill/videos/${id}/interact`,
+      {
+        "username" : sessionStorage.getItem(env.USER),
+        "action": action
+      },
+      {
+        headers:{'Authorization': `Bearer ${jwtToken}`,        
+        'Access-Control-Allow-Origin':"*"
+      }}
+    )
+
   }
 }

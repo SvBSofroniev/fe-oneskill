@@ -64,6 +64,17 @@ export class VideoComponent implements OnInit, AfterViewInit {
     };
   }
 
+  like(id: string){
+    this.interact(id, 'like');
+  }
+
+  dislike(id: string){
+    this.interact(id, 'dislike');
+  }
+
+  interact(id: string, action:string){
+    this.videoService.interact(id, action).subscribe();
+  }
 }
 
 
