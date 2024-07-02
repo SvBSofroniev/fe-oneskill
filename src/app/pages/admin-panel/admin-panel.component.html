@@ -17,9 +17,9 @@
                 @if(!isAdmin(user.roles)){
                 <button type="button" (click)="updateUserRoleAdmin(user.username)" class="btn btn-primary btn-sm">Assign Admin Role</button>
                 }
-                @if(isAdmin(user.roles)){
+                <!-- @if(isAdmin(user.roles)){
                 <button type="button" (click)="updateUserRoleAdmin(user.username)" class="btn btn-primary btn-sm">Remove Admin Role</button>
-                }
+                } -->
                 @if(!isDev(user.roles)){
                 <button type="button" (click)="updateUserRoleDev(user.username)" class="btn  btn-success btn-sm">Assign Dev Role</button>
                 }
