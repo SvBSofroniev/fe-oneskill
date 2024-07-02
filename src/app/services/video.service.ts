@@ -46,6 +46,15 @@ export class VideoService {
      }});
    }
 
+   getVideoInfoData(id: string | null):Observable<any>{
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    return this.http.get(`http://localhost:8082/oneskill/videos/${id}`,{
+       headers:{
+        'Authorization': `Bearer ${jwtToken}`,        
+        'Access-Control-Allow-Origin':"*"
+     }});
+   }
+
    getVideoStream(id: any): Observable<Blob> {
     const jwtToken = sessionStorage.getItem('JWT_TOKEN');
     const headers = new HttpHeaders({
@@ -77,5 +86,16 @@ export class VideoService {
     return this.http.post('http://localhost:8082/oneskill/videos/enroll', id, {
       headers: headers
     });
+  }
+
+  viewVideo(id: string) :Observable<any>{
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwtToken}`
+    });
+    return this.http.patch(`http://localhost:8082/oneskill/videos/${id}/view`,{}, {
+      headers:{'Authorization': `Bearer ${jwtToken}`,        
+      'Access-Control-Allow-Origin':"*"
+    }});
   }
 }

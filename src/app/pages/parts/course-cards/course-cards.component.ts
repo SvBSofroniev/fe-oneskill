@@ -53,6 +53,10 @@ export class CourseCardsComponent implements OnChanges {
     });
   }
 
+  viewVideo(videoId: string): void{
+    this.videoService.viewVideo(videoId).subscribe();
+  }
+
   isVideoEnrolled(videoId: string): boolean {
     return !this.enrolled.some(enrolledVideo => enrolledVideo.id === videoId);
   }

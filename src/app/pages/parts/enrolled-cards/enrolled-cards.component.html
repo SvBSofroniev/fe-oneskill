@@ -18,11 +18,11 @@
             <p>Dislikes: {{video.dislikes}}</p>
             <p>Views: {{video.views}}</p>
             @if(!isVideoEnrolled(video.videoId)){
-            <a (click)="enroll(video.videoId)" [routerLink]="['/videos', video.videoId]"
+            <a (click)="viewVideo(video.videoId)"  (click)="enroll(video.videoId)" [routerLink]="['/videos', video.videoId]"
                 class="enroll-link course-link">Enroll</a>
             }
             @else{
-            <a [routerLink]="['/videos', video.videoId]" class="open-link course-link">Open</a>
+            <a (click)="viewVideo(video.videoId)" [routerLink]="['/videos', video.videoId]" class="open-link course-link">Open</a>
             }
         </div>
     </div>

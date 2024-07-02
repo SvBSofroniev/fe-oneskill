@@ -68,7 +68,6 @@ export class ProfileComponent implements OnInit {
   }
 
   confirmDelete() {
-    // Implement delete logic here
     console.log('Item deleted');
     this.displayModalDelete = false;
   }

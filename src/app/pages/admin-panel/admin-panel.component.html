@@ -4,7 +4,7 @@
         <input type="search" id="userSearch" placeholder="Search for usernames..." name="username" [(ngModel)]="searchValue.username" (ngModelChange)="searchByUsername()">
     </form>
     <ul class="user-list" id="userList">
-        @for(user of filteredUsers; track user){
+        @for(user of filteredUsers; track $index){
 
         <li>
             <div class="user-info">

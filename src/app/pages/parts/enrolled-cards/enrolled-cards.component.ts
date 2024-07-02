@@ -38,4 +38,7 @@ export class EnrolledCardsComponent {
   isVideoEnrolled(videoId: string): boolean {
     return this.enrolled.some(enrolledVideo => enrolledVideo.id === videoId);
   }
+  viewVideo(videoId: string): void{
+    this.videoService.viewVideo(videoId).subscribe();
+  }
 }

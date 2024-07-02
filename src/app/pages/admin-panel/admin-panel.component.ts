@@ -37,7 +37,10 @@ export class AdminPanelComponent implements OnInit {
     this.userService.getUsersInfo().subscribe(
       {
         next: res => {
-          this.filteredUsers = res;
+          this.filteredUsers = res.map((x: User) => ({
+            ...x,
+            roles: x.roles.join(', ').toUpperCase()
+          }));
           this.usersArray = res.map((x: User) => ({
             ...x,
             roles: x.roles.join(', ').toUpperCase()
@@ -66,12 +69,14 @@ export class AdminPanelComponent implements OnInit {
         this.userService.getUsersInfo().subscribe(
           {
             next: res => {
-              this.filteredUsers = res;
+              this.filteredUsers =res.map((x: User) => ({
+                ...x,
+                roles: x.roles.join(', ').toUpperCase()
+              }));
               this.usersArray = res.map((x: User) => ({
                 ...x,
                 roles: x.roles.join(', ').toUpperCase()
               }));
-              this.isDisabled = true;
             },
             error: () => alert('Something went wrong')
           }

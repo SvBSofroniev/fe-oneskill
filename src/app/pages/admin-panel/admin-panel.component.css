@@ -93,11 +93,14 @@ h1 {
     transition: background-color 0.3s, color 0.3s;
     font-size: 12px;
     width: 100px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
 .btn-primary {
     background-color: #2f88ed;
     color: #fff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .btn-primary:hover {

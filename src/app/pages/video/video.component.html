@@ -3,17 +3,16 @@
         <video #videoPlayer [src]="videoUrl"  controls></video>
     </div>
     <div class="video-details">
-        <h1>Video Title</h1>
-        <p class="video-description">This is a detailed description of the video. It provides an overview of the content
-            covered in the video, including key points and any other relevant information.</p>
+        <h1>{{video.title}}</h1>
+        <p class="video-description">{{video.description}}</p>
         <div class="video-metadata">
-            <span>Uploaded by: <a href="profile.html">User Name</a></span>
-            <span>Published on: <span>June 22, 2024</span></span>
-            <span>Views: <span>10,000</span></span>
+            <span>Uploaded by: <a href="profile.html"></a></span>
+            <span>Published on: <span>{{video.uploadDate}}</span></span>
+            <span>Views: <span>{{video.views}}</span></span>
         </div>
         <div class="video-actions">
-            <button id="likeButton">👍 Like <span id="likeCount">123</span></button>
-            <button id="dislikeButton">👎 Dislike <span id="dislikeCount">10</span></button>
+            <button id="likeButton">👍 Like <span id="likeCount">{{video.likes}}</span></button>
+            <button id="dislikeButton">👎 Dislike <span id="dislikeCount">{{video.dislikes}}</span></button>
         </div>
     </div>
     <div class="comments-section">
