@@ -6,17 +6,23 @@
             <div></div>
             <div></div>
         </div>
-        }
+    }
         
     @for(video of filteredVideos; track video){
-       
     <div class="course-card">
         <img class="course-image" [src]="getImageSrc(video.thumbnailBase64)" alt="{{ video.title }} thumbnail">
         <div class="course-info">
             <h3>{{ video.title }}</h3>
-            <p>Likes: {{video.likes}}</p>
-            <p>Dislikes: {{video.dislikes}}</p>
-            <p>Views: {{video.views}}</p>
+            <p>
+                <i class="fa fa-thumbs-up"></i> Likes: {{video.likes}}
+            </p>
+            <p>
+                <i class="fa fa-thumbs-down"></i> Dislikes: {{video.dislikes}}
+            </p>
+            <p class="views-container">
+                <i class="gg-eye"></i> <span>Views: {{video.views}}</span>
+            </p>
+            
             @if(isVideoEnrolled(video.videoId)){
             <a (click)="viewVideo(video.videoId)" (click)="enroll(video.videoId)" [routerLink]="['/videos', video.videoId]"
                 class="enroll-link course-link">Enroll</a>
@@ -26,6 +32,5 @@
             }
         </div>
     </div>
-
     }
 </div>

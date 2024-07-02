@@ -24,22 +24,26 @@
 }
 
 .course-card {
-    display: flex;
-    flex-direction: row;
-    width: 45%;
-    background-color: #e6f7ff;
-    border-radius: 12px;
-    padding: 20px;
-    margin-left: 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
+  display: flex;
+  flex-direction: row;
+  width: 45%;
+  background-color: #e6f7ff;
+  border-radius: 12px;
+  border-left: 6px solid #2f88ed;
+  padding: 20px;
+  margin-left: 40px;
+  box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.4); /* Shadow now comes from the left bottom */
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  border-style: outset;
 }
+
 
 .course-image {
     flex: 1;
     border-radius: 8px;
+    border: 1px solid black;
     object-fit: fill;
     margin-right: 20px;
     width: 50%;
@@ -53,7 +57,7 @@
 }
 
 .course-info h3 {
-    color: #2f88ed;
+    color: black;
     margin-bottom: 10px;
     font-size: 1.5em;
     font-weight: bold;
@@ -146,3 +150,18 @@
   }
 }
 
+.fa-thumbs-up{
+  color: #4ce14c;
+}
+
+.fa-thumbs-down{
+  color: #fd5656;
+}
+
+.views-container {
+  display: flex;
+  align-items: center; /* Aligns items vertically centered */
+}
+.views-container i {
+  margin-right: 5px; /* Optional: adds space between the icon and text */
+}

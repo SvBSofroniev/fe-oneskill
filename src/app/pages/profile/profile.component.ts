@@ -46,6 +46,9 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+  get formattedRoles(): string {
+    return this.response.roles.map((role: string) => role.toUpperCase()).join(', ');
+  }
 
   onEditProfile() {
     console.log(this.editObj);
