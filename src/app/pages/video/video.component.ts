@@ -1,13 +1,20 @@
 import { Component, ElementRef, OnInit, inject, NgZone, AfterViewInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VideoInfoResponseDTO, VideoService } from '../../services/video.service';
+import {  VideoService } from '../../services/video.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import env from '../../../env-constants'
 
+type Comment = {
+  content: "",
+  username: "",
+  timestamp: ""
+}
 
 @Component({
   selector: 'app-video',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './video.component.html',
   styleUrl: './video.component.css'
 })
@@ -21,6 +28,7 @@ export class VideoComponent implements OnInit, AfterViewInit, OnChanges  {
 
   router = inject(Router);
   video = {
+    username: '',
     videoId: '',
     title: '',
     description: '',
@@ -36,6 +44,9 @@ export class VideoComponent implements OnInit, AfterViewInit, OnChanges  {
   dislikes = 0;
   dislikesTouched = false;
   likesTouched = false;
+
+  comments: Comment[] = [];
+
 
 
   constructor(private ngZone: NgZone, private route: ActivatedRoute) {}
@@ -64,6 +75,11 @@ export class VideoComponent implements OnInit, AfterViewInit, OnChanges  {
         this.dislikes = this.video.dislikes;
       }
     })
+    this.videoService.getComments(this.videoId).subscribe({
+      next: res =>{
+        this.comments = res;
+      }
+    });
   }
 
   reloadVideoInfoData(){
@@ -99,8 +115,15 @@ export class VideoComponent implements OnInit, AfterViewInit, OnChanges  {
     this.interact(id, 'dislike');
   }
 
+  reloadComments() {
+    this.videoService.getComments(this.videoId).subscribe({
+      next: res => {
+        this.comments = res;
+      }
+    });
+  }
+
   interact(id: string, action: string): void {
-    // Optimistic UI update
     if (action === 'like') {
       this.likes++;
       this.likesTouched = true;
@@ -127,14 +150,11 @@ export class VideoComponent implements OnInit, AfterViewInit, OnChanges  {
 
     this.videoService.interact(id, action).subscribe({
       next: () => {
-        // Reload the video info to get the latest likes/dislikes count from the server
         console.log(5);
 
         this.reloadVideoInfoData();
       },
-      error: () => {
-        // Rollback the optimistic update in case of an error
-        
+      error: () => {        
         console.log(6);
         
         if (action === 'like') {
@@ -148,7 +168,25 @@ export class VideoComponent implements OnInit, AfterViewInit, OnChanges  {
     });
   }
 
+  commentContent: string = '';
 
+  comment(content: string) {
+    this.videoService.comment(this.videoId, content).subscribe({
+      next: () => {
+        this.reloadComments();
+      }
+    });
+  }
+
+  onSubmitComment(event: Event, videoId: string) {
+    event.preventDefault();
+    if (this.commentContent.trim()) {
+      this.comment(this.commentContent);
+      this.commentContent = ''; 
+    } else {
+      console.log('Comment content is empty.');
+    }
+  }
 }
 
 

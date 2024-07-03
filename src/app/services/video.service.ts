@@ -109,6 +109,29 @@ export class VideoService {
         'Access-Control-Allow-Origin':"*"
       }}
     )
+  }
 
+  comment(id: string | null, content: string): Observable<any>{
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    return this.http.post(`http://localhost:8082/oneskill/videos/${id}/comment`,
+      {
+        "username" : sessionStorage.getItem(env.USER),
+        "content": content
+      },
+      {
+        headers:{'Authorization': `Bearer ${jwtToken}`,        
+        'Access-Control-Allow-Origin':"*"
+      }}
+    )
+  }
+
+  getComments(id: string | null): Observable<any>{
+    const jwtToken = sessionStorage.getItem('JWT_TOKEN');
+    return this.http.get(`http://localhost:8082/oneskill/videos/${id}/comments`,
+      {
+        headers:{'Authorization': `Bearer ${jwtToken}`,        
+        'Access-Control-Allow-Origin':"*"
+      }}
+    )
   }
 }

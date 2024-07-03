@@ -6,7 +6,7 @@
         <h1>{{video.title}}</h1>
         <p class="video-description">{{video.description}}</p>
         <div class="video-metadata">
-            <span>Uploaded by: <a href="profile.html"></a></span>
+            <span>Uploaded by: {{video.username}}</span>
             <span>Published on: <span>{{video.uploadDate}}</span></span>
             <span>Views: <span>{{video.views}}</span></span>
         </div>
@@ -17,17 +17,16 @@
     </div>
     <div class="comments-section">
         <h2>Comments</h2>
-        <form id="commentForm">
-            <textarea id="commentInput" placeholder="Add a public comment"></textarea>
+        <form (submit)="onSubmitComment($event, video.videoId)" id="commentForm">
+            <textarea id="commentInput" placeholder="Add a public comment" [(ngModel)]="commentContent" name="content"></textarea>
             <button type="submit">Comment</button>
         </form>
         <div class="comments-list">
+            @for(comment of comments; track $index){            
             <div class="comment">
-                <p><strong>John Doe:</strong> Great video! Very informative.</p>
+                <p><strong>{{comment.username}} <b>{{comment.timestamp}}</b>: </strong>{{comment.content}}</p>
             </div>
-            <div class="comment">
-                <p><strong>Jane Smith:</strong> Thanks for the detailed explanation.</p>
-            </div>
+        }
         </div>
     </div>
 </div>
