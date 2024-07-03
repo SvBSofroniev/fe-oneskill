@@ -11,8 +11,8 @@
             <span>Views: <span>{{video.views}}</span></span>
         </div>
         <div class="video-actions">
-            <button (click)="like(video.videoId)" id="likeButton">👍 Like <span id="likeCount">{{video.likes}}</span></button>
-            <button (click)="dislike(video.videoId)" id="dislikeButton">👎 Dislike <span id="dislikeCount">{{video.dislikes}}</span></button>
+            <button  (click)="like(video.videoId)" id="likeButton">👍 Like <span id="likeCount">{{likes}}</span></button>
+            <button  (click)="dislike(video.videoId)" id="dislikeButton">👎 Dislike <span id="dislikeCount">{{dislikes}}</span></button>
         </div>
     </div>
     <div class="comments-section">
