@@ -2,8 +2,9 @@
     <img src="app-logo.png" alt="App Logo" class="app-logo">
     <ul>
       <li><a [routerLink]="['/']">Home</a></li>
-      <li><a [routerLink]="['/courses']">Courses</a></li>
       <li><a [routerLink]="['/profile', username]">Profile</a></li>
+
+      <li><a [routerLink]="['/courses']">Courses</a></li>
       @if(isNotJustUser){
       <li><a [routerLink]="['/upload']">Upload</a></li>
       }

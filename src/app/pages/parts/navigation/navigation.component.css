@@ -32,12 +32,17 @@
   cursor: pointer;
 }
 .nav ul li:last-child{
-  margin-left: 10%;
+  margin-left: 20%;
+}
+
+.nav ul li:last-child a{
+  background-color: white;
+  color:rgb(37, 37, 37);
 }
 
 .nav ul li:last-child a:hover{
-  background-color: rgb(253, 46, 46);
-  color:rgb(37, 37, 37);
+  background-color: #e9000c;
+  color:white;
 }
 
 .app-logo{
