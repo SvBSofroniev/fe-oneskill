@@ -32,12 +32,18 @@
                 <input type="text" id="username" name="username" required [(ngModel)]="editObj.username">
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required [(ngModel)]="editObj.email">
-            </div>
-            <div class="form-group">
                 <label for="password">New password</label>
-                <input type="password" id="password" name="password" required [(ngModel)]="editObj.password">
+                <div class="password-div">
+
+
+                <input class="password" (blur)="validatePassword()" type="{{ hidePassword ? 'password' : 'text' }}" id="password" name="password" required [(ngModel)]="editObj.password" [ngClass]="{'invalid-password': passwordValidation}"> 
+                <i (click)="togglePasswordVisibility()" class="gg-eye eye"></i>
+                </div>
+                @if(passwordValidation){
+                    <span class="invalid-feedback">Invalid password. Password must be at least 8 characters long and include letters, numbers, and special symbols.</span>
+                }
+
+
             </div>
             <div class="form-group">
                 <button type="submit">Save Changes</button>

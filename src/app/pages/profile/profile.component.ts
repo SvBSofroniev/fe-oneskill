@@ -14,14 +14,14 @@ import { FormsModule } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   displayModalEdit: boolean = false;
   displayModalDelete: boolean = false;
+  passwordValidation: boolean = false;
 
   userService = inject(UserServiceService);
-
+  hidePassword: boolean = true;
   editObj: any = {
     "username": "",
     "firstname": "",
     "lastname": "",
-    "email": "",
     "password": ""
   }
 
@@ -50,8 +50,42 @@ export class ProfileComponent implements OnInit {
     return this.response.roles.map((role: string) => role.toUpperCase()).join(', ');
   }
 
+  validatePassword(): void {
+    console.log(this.editObj.password !== '' && this.editObj.password.length < 8);
+    
+    if(this.editObj.password !== '' && this.editObj.password.length < 8){
+      // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+      this.passwordValidation = true;
+    } else {
+      if (!(this.editObj.password.length < 8) || this.editObj.password === '') {
+        this.passwordValidation = false;
+      }
+    }   
+  }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
+}
+
   onEditProfile() {
-    console.log(this.editObj);
+    if (this.passwordValidation) {
+      alert('Invalid password. Password must be at least 8 characters long and include letters, numbers, and special symbols.');
+      return;
+    }
+
+    this.userService.updateUser(this.editObj).subscribe({
+      next: () => {
+        this.closeEditModal();
+        this.userService.getUserInfo().subscribe(
+          {
+            next: res => {
+              this.response = res;
+            },
+            error: () => alert('Something went wrong')
+          }
+        );
+      }
+    });
   }
 
   openModalEdit() {

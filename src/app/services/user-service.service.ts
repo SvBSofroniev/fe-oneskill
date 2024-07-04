@@ -15,6 +15,13 @@ export class UserServiceService {
 
   }
 
+  editObj: any = {
+    "username": "",
+    "firstname": "",
+    "lastname": "",
+    "password": ""
+  }
+
   getUserInfo():Observable<any>{
    const username = sessionStorage.getItem(env.USER);
    const jwtToken = sessionStorage.getItem(env.JWT_TOKEN);
@@ -37,6 +44,15 @@ export class UserServiceService {
     const jwtToken = sessionStorage.getItem(env.JWT_TOKEN);
 
     return this.http.patch(`http://localhost:8082/oneskill/users/${username}/roles/${role}`,{}, {
+      headers:{'Authorization': `Bearer ${jwtToken}`,        
+      'Access-Control-Allow-Origin':"*"
+    }});
+  }
+
+  updateUser(editObj: any){
+    const jwtToken = sessionStorage.getItem(env.JWT_TOKEN);
+    const username = sessionStorage.getItem(env.USER);
+    return this.http.post(`http://localhost:8082/oneskill/users/${username}/update`,editObj, {
       headers:{'Authorization': `Bearer ${jwtToken}`,        
       'Access-Control-Allow-Origin':"*"
     }});

@@ -212,3 +212,25 @@
 .roles-span{
     color:red
 }
+
+.invalid-password {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+}
+
+.password-div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px
+}
+
+#password{
+    width: 85%;
+}
+
+.eye{
+    cursor: pointer;
+}
