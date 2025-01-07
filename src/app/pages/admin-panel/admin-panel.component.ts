@@ -12,7 +12,8 @@ type User = {
   password: "",
   roles: [],
   createdAt: "",
-  updatedAt: ""
+  updatedAt: "",
+  accessToken: ""
 }
 
 @Component({

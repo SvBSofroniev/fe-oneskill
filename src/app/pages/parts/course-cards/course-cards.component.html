@@ -7,8 +7,12 @@
             <div></div>
         </div>
     }
-        
+    @if(filteredVideos.length === 0){
+       <h1 class="no-videos">No videos found</h1>
+    }
     @for(video of filteredVideos; track video){
+
+    
     <div class="course-card">
         <img class="course-image" [src]="getImageSrc(video.thumbnailBase64)" alt="{{ video.title }} thumbnail">
         <div class="course-info">

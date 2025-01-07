@@ -1,27 +1,59 @@
 <div class="parent">
-  <div class="main">  	
+  <div class="main">
     <input type="checkbox" id="chk" aria-hidden="true">
-  
-      <div class="signup">
-        <form #myRegisterForm="ngForm">
-          <label for="chk" aria-hidden="true">Sign up</label>
-          <input type="text" name="firstname" [(ngModel)]="registerObj.firstname" placeholder="First name" required="">
-          <input type="text" name="lastName" [(ngModel)]="registerObj.lastname" placeholder="Last name" required="">
-          <input type="username" name="username" [(ngModel)]="registerObj.username" placeholder="Username" required="">
-          <input type="password" name="password" [(ngModel)]="registerObj.password" placeholder="Password" required="">
-          <input type="email" name="email" [(ngModel)]="registerObj.email" placeholder="Email" required="">
-          <button (click)="onRegister(myRegisterForm)">Sign up</button>
-        </form>
+
+    <div class="signup">
+      <form #myRegisterForm="ngForm">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" name="firstname" [(ngModel)]="registerObj.firstname" placeholder="First name" required="">
+        <input type="text" name="lastName" [(ngModel)]="registerObj.lastname" placeholder="Last name" required="">
+        <input type="username" name="username" [(ngModel)]="registerObj.username" placeholder="Username" required="">
+        <input type="password" name="password" [(ngModel)]="registerObj.password" placeholder="Password" required="">
+        <input type="email" name="email" [(ngModel)]="registerObj.email" placeholder="Email" required="">
+        <button (click)="onRegister(myRegisterForm)">Sign up</button>
+      </form>
+    </div>
+
+    <div class="login">
+      <form>
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="username" name="username" [(ngModel)]="loginObj.username" placeholder="Username" required="">
+        <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Password" required="">
+        <button (click)="onLogin()">Login</button>
+        <div class="sso-login">
+          <h3>Sign in with Google</h3>
+          <button (click)="onGoogleSignIn()">Sign in with Google</button>
+        </div>
+
+
+
+        <p class="password-reset">
+          Forgot your password? <button (click)="sendCodeHandler()">Click here</button>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Reset Password</h2>
+      <div>
+        <label for="verificationCode">Verification Code</label>
+        <input type="text" id="verificationCode" [(ngModel)]="enteredCode" placeholder="Enter verification code"
+          required>
+        <button *ngIf="!codeVerified" (click)="verifyCode()">Verify Code</button>
       </div>
-  
-      <div class="login">
-        <form>
-          <label for="chk" aria-hidden="true">Login</label>
-          <input type="username" name="username" [(ngModel)]="loginObj.username"  placeholder="Username" required="">
-          <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Password" required="">
-          <button (click)="onLogin()">Login</button>
-        </form>
+      <div *ngIf="codeVerified">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" [(ngModel)]="newPassword" placeholder="Enter new password" required>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirm new password"
+          required>
+
+        <button (click)="resetPassword()">Reset Password</button>
       </div>
+    </div>
   </div>
 </div>
-

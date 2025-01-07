@@ -9,7 +9,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     max-width: 800px;
-    margin: 50px auto;
+    margin: 69px auto;
 }
 
 h1 {
@@ -117,10 +117,10 @@ h1 {
 }
 
 .btn-danger {
-    background-color: #dc3545;
+    background-color: #dc6435;
     color: #fff;
 }
 
 .btn-danger:hover {
-    background-color: #b02a37;
+    background-color: #a1411b;
 }

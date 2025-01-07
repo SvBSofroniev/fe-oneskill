@@ -14,14 +14,14 @@ export class AuthService {
   constructor() { }
 
   login(user: {
-    username: string,
-    password: string
+    username: string | null,
+    password: string | null
   }): Observable<any> {
     return this.http.post('http://localhost:8082/oneskill/auth/login', user)
       .pipe(tap((response: any) => this.doLoginUser(response.username, response.token, response.roles)));
   }
 
-  private doLoginUser(username: string, token: string, roles: string[]) {
+  doLoginUser(username: string, token: string, roles: string[]) {
     this.loggedUser = username;
     sessionStorage.setItem(env.JWT_TOKEN, token);
     sessionStorage.setItem(env.USER, username);
@@ -31,7 +31,7 @@ export class AuthService {
 
   getUserRoles(): string[] {
     let rolesArray = [];
-    let rolesString = sessionStorage.getItem(env.ROLES);
+    let rolesString = sessionStorage.getItem(env.ROLES);  
     if (typeof rolesString === 'string') {
       rolesArray = JSON.parse(rolesString);
     }
@@ -45,13 +45,18 @@ export class AuthService {
 
 
   register(user: {
-    firstname: string,
-    lastname: string,
-    email: string,
-    password: string,
-    username: string
+    firstname: string | undefined,
+    lastname: string | undefined,
+    email: string | null,
+    password: string | null,
+    username: string | null
   }): Observable<any> {
     return this.http.post('http://localhost:8082/oneskill/auth/register', user)
+      .pipe(tap((response: any) => this.doLoginUser(response.username, response.token, [])));
+  }
+
+  editPassword(email: string | null, newPassword: string | undefined): Observable<any> {
+    return this.http.patch(`http://localhost:8082/oneskill/auth/reset?email=${email}&password=${newPassword}`, null)
       .pipe(tap((response: any) => console.log(response)));
   }
 }
